@@ -1,34 +1,46 @@
 import React from "react";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import chair from "../../../images/chair.png";
-import Bg from "../../../images/bg.png";
-import { Button, Typography } from "@mui/material";
+import bg from "../../../images/bg.png";
+import { Button, Container, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 
+const bannerBg = {
+  background: `url(${bg})`,
+  width: "100%",
+};
+const verticalCenter = {
+  display: "flex",
+  alignItems: "center",
+  height: 500,
+  marginTop: 50,
+};
 const HomeBanner = () => {
   return (
     <>
-      <Box sx={{ flexGrow: 1, mt: 18, mb: 15 }}>
+      <Container sx={{ flexGrow: 1 }} style={bannerBg}>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={5}>
-            <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-              Your New Smile <br /> Starts Here
-            </Typography>
-            <Typography variant="p" sx={{ color: "gray"}}>
-              Today's connected and busy medical practices can benefit greatly by adopting a patient portal or combined patient and doctor portal. The
-              right software, system integration and security allows any practice to create one portal that benefits patients, physicians and other
-              medical and administrative staff.
-            </Typography>
-            <br />
-            <Button variant="contained" sx={{ color: "white", backgroundColor: "#1CC7C1", mt: 4 }}>
-              GET APPOINTMENT
-            </Button>
+          <Grid item xs={12} md={5} style={{ ...verticalCenter, textAlign: "left" }}>
+            <Box sx={{ ml: 3 }}>
+              <Typography variant="h4" sx={{ fontWeight: "bold", mb: 3 }}>
+                Your New Smile <br /> Starts Here
+              </Typography>
+              <Typography variant="p" sx={{ color: "gray" }}>
+                Today's connected and busy medical practices can benefit greatly by adopting a patient portal or combined patient and doctor portal.
+                The right software, system integration and security allows any practice to create one portal that benefits patients, physicians and
+                other medical and administrative staff.
+              </Typography>
+              <br />
+              <Button variant="contained" sx={{ color: "white", backgroundColor: "#1CC7C1", mt: 4, mb: 4 }}>
+                GET APPOINTMENT
+              </Button>
+            </Box>
           </Grid>
-          <Grid xs={12} md={7}>
-            <img src={chair} alt="" style={{ width: "600px" }} />
+          <Grid xs={12} md={7} style={verticalCenter}>
+            <img src={chair} alt="" style={{ width: "500px", marginLeft: "70px" }} />
           </Grid>
         </Grid>
-      </Box>
+      </Container>
     </>
   );
 };
