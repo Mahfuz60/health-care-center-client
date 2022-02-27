@@ -19,7 +19,7 @@ const AppointmentBook = ({ appointment, date }) => {
           <Typography variant="h6">{time}</Typography>
           <Typography variant="p" sx={{ color: "gray", fontWeight: "bold" }}>
             {space} Spaces Available
-          </Typography>{" "}
+          </Typography>
           <br />
           <Button onClick={handleOpenModal} variant="contained" sx={{ backgroundColor: "#1CC7C1", color: "white", m: 2 }}>
             Book Appointment

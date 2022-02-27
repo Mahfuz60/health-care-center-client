@@ -9,6 +9,7 @@ const appointmentBannerBg = {
   background: `url(${DoctorBg})`,
   backgroundColor: "#40485B",
   backgroundBlendMode: "darken, luminosity",
+  padding: "15px",
 };
 
 const AppointmentBanner = () => {

@@ -22,7 +22,7 @@ const AppointmentModal = ({ openModal, handleCloseModal, appointment, date }) =>
   const [value, setValue] = useState(null);
   //form Handler
   const HandlerFromBooking = (e) => {
-    alert("Appointment Submitted");
+    alert("Booking Appointment ");
     handleCloseModal();
     e.preventDefault();
   };
