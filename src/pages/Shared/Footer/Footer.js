@@ -15,9 +15,9 @@ const footerBgStyle = {
 
 const Footer = () => {
   return (
-    <Container style={footerBgStyle}>
+    <Container style={footerBgStyle} >
       <Grid container spacing={2}>
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <Box sx={{ textAlign: "left", p: 2 }}>
             <Typography variant="h5" sx={{ color: "#17CBAA", my: 3, fontWeight: "bold" }}>
               About Health <br />
@@ -30,7 +30,7 @@ const Footer = () => {
             </Typography>
           </Box>
         </Grid>
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <Box sx={{ textAlign: "left", p: 2 }}>
             <Typography variant="h5" sx={{ color: "#17CBAA", my: 3, fontWeight: "bold" }}>
               Services
@@ -58,7 +58,7 @@ const Footer = () => {
             </Typography>
           </Box>
         </Grid>
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <Box sx={{ textAlign: "left", p: 2 }}>
             <Typography variant="h5" sx={{ color: "#17CBAA", my: 3, fontWeight: "bold" }}>
               Oral Health
@@ -86,7 +86,7 @@ const Footer = () => {
             </Typography>
           </Box>
         </Grid>
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <Box sx={{ textAlign: "left", p: 2 }}>
             <Typography variant="h5" sx={{ color: "#17CBAA", my: 3, fontWeight: "bold" }}>
               Our Address

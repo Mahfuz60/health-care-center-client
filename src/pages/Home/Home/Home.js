@@ -1,6 +1,4 @@
 import React from "react";
-import Footer from "../../Shared/Footer/Footer";
-import NavBar from "../../Shared/NavBar/NavBar";
 import AppointmentBanner from "../AppointmentBannar/AppointmentBannar";
 import Contact from "../Contact/Contact";
 import DentalInfo from "../DentalInfo/DentalInfo";
@@ -13,7 +11,6 @@ import Testimonial from "../Testimonial/Testimonial";
 const Home = () => {
   return (
     <>
-      <NavBar></NavBar>
       <HomeBanner></HomeBanner>
       <Services></Services>
       <DentalInfo></DentalInfo>
@@ -21,7 +18,6 @@ const Home = () => {
       <Testimonial></Testimonial>
       <OurDoctor></OurDoctor>
       <Contact></Contact>
-      <Footer></Footer>
     </>
   );
 };

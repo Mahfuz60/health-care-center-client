@@ -48,7 +48,7 @@ const AvailableAppointment = ({ date }) => {
         Available Appointments on {date.toDateString()}
       </Typography>
 
-      <Grid container spacing={2} sx={{ mt: 4 }}>
+      <Grid container spacing={2} sx={{ my: 10 }}>
         {appointmentSlot.map((appointment) => (
           <AppointmentBook key={appointment.id} appointment={appointment} date={date}></AppointmentBook>
         ))}
