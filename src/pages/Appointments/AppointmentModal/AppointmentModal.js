@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import { Button, Fade } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import useAuth from "../../../hooks/UseAuth";
 
 const style = {
   position: "absolute",
@@ -17,13 +18,49 @@ const style = {
   p: 4,
 };
 
-const AppointmentModal = ({ openModal, handleCloseModal, appointment, date }) => {
+const AppointmentModal = ({ openModal, handleCloseModal, appointment, date, setAppointmentSuccess }) => {
   const { name, time } = appointment;
-  const [value, setValue] = useState(null);
+  const { user } = useAuth();
+  //Initial AppointmentInfo
+  const initialInfo = { patientName: user.displayName, email: user.email, phone: "" };
+  const [appointmentInfo, setAppointmentInfo] = useState(initialInfo);
+
+  const handleOnBlur = (e) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    const newInfo = { ...appointmentInfo };
+    newInfo[field] = value;
+
+    setAppointmentInfo(newInfo);
+    e.preventDefault();
+  };
   //form Handler
   const HandlerFromBooking = (e) => {
-    alert("Booking Appointment ");
-    handleCloseModal();
+    // alert(" Appointment Booking Successfully ");
+
+    //collect data
+    const appointment = {
+      ...appointmentInfo,
+      time,
+      serviceName: name,
+      date: date.toLocaleDateString(),
+    };
+
+    //send to data server
+    fetch("http://localhost:5000/appointments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(appointment),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          handleCloseModal();
+          setAppointmentSuccess(true);
+        }
+      });
+
     e.preventDefault();
   };
   return (
@@ -35,9 +72,9 @@ const AppointmentModal = ({ openModal, handleCloseModal, appointment, date }) =>
           </Typography>
           <form onSubmit={HandlerFromBooking}>
             <TextField disabled sx={{ width: "90%", m: 1 }} defaultValue={time} />
-            <TextField sx={{ width: "90%", m: 1 }} placeholder="Your Name" />
-            <TextField sx={{ width: "90%", m: 1 }} placeholder="Your Phone Number" />
-            <TextField sx={{ width: "90%", m: 1 }} placeholder="Your Email" />
+            <TextField onBlur={handleOnBlur} name="patientName" sx={{ width: "90%", m: 1 }} defaultValue={user.displayName} />
+            <TextField onBlur={handleOnBlur} name="phone" sx={{ width: "90%", m: 1 }} placeholder="Your Phone Number" />
+            <TextField onBlur={handleOnBlur} name="email" sx={{ width: "90%", m: 1 }} defaultValue={user.email} />
             <TextField disabled sx={{ width: "90%", m: 1 }} defaultValue={date.toDateString()} />
 
             <Button type="submit" variant="contained" sx={{ backgroundColor: "#1CC7C1", color: "white", mt: 2 }}>

@@ -8,7 +8,7 @@ import StaticDatePicker from "@mui/lab/StaticDatePicker";
 const Calender = ({ date, setDate }) => {
   return (
     <>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}  >
         <StaticDatePicker
           displayStaticWrapperAs="desktop"
           openTo="day"

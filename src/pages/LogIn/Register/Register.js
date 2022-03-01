@@ -1,14 +1,15 @@
-import { Button, Container, Grid, TextField, Typography,Alert,CircularProgress } from "@mui/material";
+import { Button, Container, Grid, TextField, Typography, Alert, CircularProgress } from "@mui/material";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../../hooks/UseAuth";
 import loginBg from "../../../images/login.png";
 
 const Register = () => {
   const [loginData, setLoginData] = useState({});
-  const {user, registerUser, loading ,authError} = useAuth();
+  const { user, registerUser, loading, authError } = useAuth();
+  const history = useHistory();
 
-  const handleOnChange = (e) => {
+  const handleOnBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
 
@@ -16,13 +17,15 @@ const Register = () => {
     newRegisterUser[field] = value;
     setLoginData(newRegisterUser);
   };
-  const handRegisterSubmit = (e) => {
+
+  //Handle register user
+  const handleRegisterSubmit = (e) => {
     if (loginData.password !== loginData.password2) {
       alert("Your password did not match!");
       return;
     }
 
-    registerUser(loginData.email, loginData.password);
+    registerUser(loginData.email, loginData.password, history, loginData.name);
     e.preventDefault();
   };
   return (
@@ -34,24 +37,30 @@ const Register = () => {
           </Typography>
 
           {!loading && (
-            <form onSubmit={handRegisterSubmit} style={{ marginTop: "15px" }}>
-              <TextField placeholder="Your Name" sx={{ width: "60%", mt: 2 }} variant="standard" type="text" name="name" onChange={handleOnChange} />
-
+            <form onSubmit={handleRegisterSubmit} style={{ marginTop: "15px" }}>
               <TextField
-                placeholder="Your Email"
+                placeholder="Enter Your Name"
+                sx={{ width: "60%", mt: 2 }}
+                variant="standard"
+                type="text"
+                name="name"
+                onBlur={handleOnBlur}
+              />
+              <TextField
+                placeholder="Enter Your Email"
                 sx={{ width: "60%", mt: 2 }}
                 variant="standard"
                 type="email"
                 name="email"
-                onChange={handleOnChange}
+                onBlur={handleOnBlur}
               />
               <TextField
                 type="password"
-                placeholder="Your Password"
+                placeholder="Enter Your Password"
                 sx={{ width: "60%", mt: 2 }}
                 variant="standard"
                 name="password"
-                onChange={handleOnChange}
+                onBlur={handleOnBlur}
               />
               <TextField
                 type="password"
@@ -59,7 +68,7 @@ const Register = () => {
                 sx={{ width: "60%", mt: 2 }}
                 variant="standard"
                 name="password2"
-                onChange={handleOnChange}
+                onBlur={handleOnBlur}
               />
               <br />
 

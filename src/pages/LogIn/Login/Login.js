@@ -6,7 +6,7 @@ import loginBg from "../../../images/login.png";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({});
-  const { user, loginUser, loading, authError } = useAuth();
+  const { user, loginUser, loading, authError, googleSignIn } = useAuth();
 
   const location = useLocation();
   const history = useHistory();
@@ -25,6 +25,13 @@ const Login = () => {
     e.preventDefault();
   };
 
+  //handle googleSignIn
+  const handleGoogleSignIn = (e) => {
+    googleSignIn(location,history);
+
+    e.preventDefault();
+  }
+
   return (
     <Container>
       <Grid container spacing={2}>
@@ -36,20 +43,20 @@ const Login = () => {
           {!loading && (
             <form onSubmit={handleLoginSubmit} style={{ marginTop: "15px" }}>
               <TextField
-                placeholder="Your Email"
+                placeholder="Enter Your Email"
                 type="email"
                 sx={{ width: "60%", mt: 2 }}
                 variant="standard"
                 name="email"
-                onChange={handleOnChange}
+                onBlur={handleOnChange}
               />
               <TextField
                 type="password"
-                placeholder="Your Password"
+                placeholder="Enter Your Password"
                 sx={{ width: "60%", mt: 2 }}
                 variant="standard"
                 name="password"
-                onChange={handleOnChange}
+                onBlur={handleOnChange}
               />
               <br />
 
@@ -66,6 +73,12 @@ const Login = () => {
           {loading && <CircularProgress />}
           {user?.email && <Alert severity="success">User LogIn Successfully!</Alert>}
           {authError && <Alert severity="error">{authError}</Alert>}
+
+          {/* handle googleSignIn */}
+          <Typography sx={{ color: "black", fontWeight: "bold", pt: 2 }}>--------------------------------------------------</Typography>
+          <Button onClick={handleGoogleSignIn} variant="contained" sx={{ mt: 5, backgroundColor: "#0CCFD8", color: "white", width: "60%" }}>
+            Google SignIn
+          </Button>
         </Grid>
         <Grid item xs={12} md={6}>
           <img src={loginBg} alt="" style={{ width: "100%", height: "80%", marginTop: "50px" }} />

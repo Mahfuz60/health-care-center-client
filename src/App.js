@@ -6,16 +6,14 @@ import Appointment from "./pages/Appointments/Appointment/Appointment";
 import Login from "./pages/LogIn/Login/Login";
 import Register from "./pages/LogIn/Register/Register";
 import AuthProvider from "./context/AuthProvider/AuthProvider";
-import NavBar from "./pages/Shared/NavBar/NavBar";
-import Footer from "./pages/Shared/Footer/Footer";
 import PrivateRoute from "./pages/LogIn/PrivateRoute/PrivateRoute";
+import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
         <Router>
-          <NavBar></NavBar>
           <Switch>
             <Route exact path="/">
               <Home />
@@ -26,6 +24,9 @@ function App() {
             <PrivateRoute path="/appointment">
               <Appointment></Appointment>
             </PrivateRoute>
+            <PrivateRoute path="/dashboard">
+              <Dashboard></Dashboard>
+            </PrivateRoute>
             <Route path="/login">
               <Login></Login>
             </Route>
@@ -33,7 +34,6 @@ function App() {
               <Register></Register>
             </Route>
           </Switch>
-          <Footer></Footer>
         </Router>
       </AuthProvider>
     </div>

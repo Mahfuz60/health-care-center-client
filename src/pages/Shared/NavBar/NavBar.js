@@ -28,6 +28,9 @@ const NavBar = () => {
             <Link to="/appointment" style={{ textDecoration: "none", color: "white" }}>
               <Button color="inherit">Appointment</Button>
             </Link>
+            <Link to="/dashboard" style={{ textDecoration: "none", color: "white" }}>
+              <Button color="inherit">Dashboard</Button>
+            </Link>
             <Button color="inherit">About</Button>
             <Button color="inherit">Contact Us</Button>
             <Button color="inherit">Review</Button>

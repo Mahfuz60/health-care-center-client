@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Grid, Paper, Typography } from "@mui/material";
 import AppointmentModal from "../AppointmentModal/AppointmentModal";
 
-const AppointmentBook = ({ appointment, date }) => {
+const AppointmentBook = ({ appointment, date,setAppointmentSuccess }) => {
   const { name, time, space } = appointment;
 
   //Modal open
@@ -26,7 +26,7 @@ const AppointmentBook = ({ appointment, date }) => {
           </Button>
         </Paper>
       </Grid>
-      <AppointmentModal openModal={openModal} handleCloseModal={handleCloseModal} appointment={appointment} date={date}></AppointmentModal>
+      <AppointmentModal openModal={openModal} handleCloseModal={handleCloseModal} appointment={appointment} date={date} setAppointmentSuccess={setAppointmentSuccess}></AppointmentModal>
     </>
   );
 };
