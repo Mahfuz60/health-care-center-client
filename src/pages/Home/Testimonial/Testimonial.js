@@ -39,7 +39,7 @@ const Testimonial = () => {
       <Typography variant="h4" sx={{ fontWeight: "bold", textAlign: "left",pb:5 }}>
         What's our patients <br /> Says
       </Typography>
-      <Grid container spacing={2} >
+      <Grid item container spacing={2} >
         {testimonials.map((testimonial) => (
           <TestimonialCard key={testimonial.name} testimonial={testimonial}></TestimonialCard>
         ))}

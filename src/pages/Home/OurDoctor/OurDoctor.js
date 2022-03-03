@@ -28,7 +28,7 @@ const OurDoctor = () => {
       <Typography variant="h4" sx={{ fontWeight: "bold", color: "#1CC7C1", textAlign: "center", justifyContent: "center" }}>
         Our Doctors
       </Typography>
-      <Grid container spacing={4} sx={{ mt: 4 }}>
+      <Grid  container spacing={4} sx={{ mt: 4 }}>
         {doctors.map((doctor) => (
           <OurDoctorCard key={doctor.name} doctor={doctor}></OurDoctorCard>
         ))}

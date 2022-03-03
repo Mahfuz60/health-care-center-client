@@ -19,7 +19,7 @@ const HomeBanner = () => {
   return (
     <>
       <Container sx={{ flexGrow: 1 }} style={bannerBg}>
-        <Grid container spacing={2}>
+        <Grid  container spacing={2}>
           <Grid item xs={12} md={5} style={{ ...verticalCenter, textAlign: "left" }}>
             <Box sx={{ ml: 3 }}>
               <Typography variant="h4" sx={{ fontWeight: "bold", mb: 3 }}>
@@ -36,7 +36,7 @@ const HomeBanner = () => {
               </Button>
             </Box>
           </Grid>
-          <Grid xs={12} md={7} style={verticalCenter}>
+          <Grid item xs={12} md={7} style={verticalCenter}>
             <img src={chair} alt="" style={{ width: "500px", marginLeft: "70px" }} />
           </Grid>
         </Grid>

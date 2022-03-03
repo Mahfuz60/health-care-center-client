@@ -5,11 +5,11 @@ import treatment from "../../../images/treatment.png";
 const DentalInfo = () => {
   return (
     <Container sx={{ p: 10 }}>
-      <Grid container spacing={2}>
-        <Grid xs={12} md={6}>
+      <Grid  container spacing={2}>
+        <Grid item xs={12} md={6}>
           <img src={treatment} alt="" style={{ width: "320px" }} />
         </Grid>
-        <Grid xs={12} md={6} sx={{ textAlign: "center" }}>
+        <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
           <Typography variant="h4" sx={{ fontWeight: "bold", pb: 4 }}>
             Exceptional Dental, <br /> Care on Your Terms
           </Typography>

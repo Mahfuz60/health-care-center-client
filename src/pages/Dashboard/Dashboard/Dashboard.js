@@ -6,40 +6,116 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
+import SettingsIcon from "@mui/icons-material/Settings";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import LogoutIcon from "@mui/icons-material/Logout";
+import ContactsIcon from "@mui/icons-material/Contacts";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
+import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Grid, Paper } from "@mui/material";
-import Calender from "../../Shared/Calender/Calender";
-import AppointmentList from "../AppointmentList/AppointmentList";
+import { Button } from "@mui/material";
+import useAuth from "../../../hooks/UseAuth";
+import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import DashboardHome from "../DashboardHome/DashboardHome";
+import MakeAdmin from "../MakeAdmin/MakeAdmin";
+import AddDoctor from "../AddDoctor/AddDoctor";
+import AdminRoute from "../../LogIn/AdminRoute/AdminRoute";
 
 const drawerWidth = 200;
 
 const Dashboard = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [date, setDate] = useState(new Date());
+
+  const { logOut, admin } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  //nested route
+  let { path, url } = useRouteMatch();
+
   const drawer = (
     <Box>
       <Toolbar />
       <Divider />
-      <List>
-        {["Appointment", "Patients", "Prescriptions", "Setting", "logOut"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+      <List sx={{ textAlign: "start" }}>
+        <Link to="/" style={{ textDecoration: "none", color: "#11D0DA" }}>
+          <Button color="inherit" sx={{ mt: 2 }}>
+            <HomeIcon />
+            Home
+          </Button>
+        </Link>
+        <br />
+
+        {/* Nested Route start */}
+        <Link to={`${url}`} style={{ textDecoration: "none", color: "#11D0DA" }}>
+          <Button color="inherit" sx={{ mt: 2 }}>
+            <DashboardIcon />
+            Dashboard
+          </Button>
+        </Link>
+        <br />
+
+        {admin && (
+          <Box>
+            <Link to={`${url}/addDoctor`} style={{ textDecoration: "none", color: "#11D0DA" }}>
+              <Button color="inherit" sx={{ mt: 2 }}>
+                <ContactsIcon />
+                Add Doctor
+              </Button>
+            </Link>
+            <br />
+            <Link to={`${url}/makeAdmin`} style={{ textDecoration: "none", color: "#11D0DA" }}>
+              <Button color="inherit" sx={{ mt: 2 }}>
+                <ContactsIcon />
+                Make Admin
+              </Button>
+            </Link>
+            <br />
+          </Box>
+        )}
+        {/* Nested Route end*/}
+        <Link to="/appointment" style={{ textDecoration: "none", color: "#11D0DA" }}>
+          <Button color="inherit" sx={{ mt: 2 }}>
+            <AssignmentIcon />
+            Appointment
+          </Button>
+        </Link>
+        <br />
+
+        <Link to="/" style={{ textDecoration: "none", color: "#11D0DA" }}>
+          <Button color="inherit" sx={{ mt: 2 }}>
+            <ContactsIcon />
+            Patients
+          </Button>
+        </Link>
+        <br />
+        <Link to="/" style={{ textDecoration: "none", color: "#11D0DA" }}>
+          <Button color="inherit" sx={{ mt: 2 }}>
+            <InboxIcon />
+            Prescriptions
+          </Button>
+        </Link>
+        <br />
+        <Link to="/" style={{ textDecoration: "none", color: "#11D0DA" }}>
+          <Button color="inherit" sx={{ mt: 2 }}>
+            <SettingsIcon />
+            Setting
+          </Button>
+        </Link>
+        <br />
+
+        <Link to="/" style={{ textDecoration: "none", color: "#11D0DA" }}>
+          <Button onClick={logOut} color="inherit" sx={{ mt: 2 }}>
+            <LogoutIcon />
+            LogOut
+          </Button>
+        </Link>
       </List>
     </Box>
   );
@@ -72,7 +148,7 @@ const Dashboard = (props) => {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -94,22 +170,20 @@ const Dashboard = (props) => {
       </Box>
       <Box component="main" sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
         <Toolbar />
-        <Grid container spacing={2}>
-          <Grid xs={12} sm={8} md={4}>
-            <Typography variant="h5" sx={{ py: 3, fontWeight: "bold", color: "black", textAlign: "left" }}>
-              Appointment
-            </Typography>
 
-            <Paper elevation={4}>
-              <Calender date={date} setDate={setDate}></Calender>
-            </Paper>
-          </Grid>
-          <Grid xs={12} sm={8} md={7} sx={{ pt: 8 }}>
-            <Paper sx={{ m: 4 }}>
-              <AppointmentList date={date}></AppointmentList>
-            </Paper>
-          </Grid>
-        </Grid>
+        {/* Nested Routing */}
+
+        <Switch>
+          <Route exact path={path}>
+            <DashboardHome></DashboardHome>
+          </Route>
+          <AdminRoute path={`${path}/makeAdmin`}>
+            <MakeAdmin></MakeAdmin>
+          </AdminRoute>
+          <AdminRoute path={`${path}/addDoctor`}>
+            <AddDoctor></AddDoctor>
+          </AdminRoute>
+        </Switch>
       </Box>
     </Box>
   );

@@ -16,11 +16,11 @@ const AppointmentBanner = () => {
   return (
     <>
       <Box style={appointmentBannerBg} sx={{ flexGrow: 1, mt: 10 }}>
-        <Grid container spacing={2}>
-          <Grid xs={12} md={6}>
+        <Grid  container spacing={2}>
+          <Grid item xs={12} md={6}>
             <img src={Doctor} alt="" style={{ width: "400px", marginTop: "-90px" }} />
           </Grid>
-          <Grid xs={12} md={6} sx={{ display: "flex", alignItems: "center", textAlign: "left" }}>
+          <Grid item xs={12} md={6} sx={{ display: "flex", alignItems: "center", textAlign: "left" }}>
             <Box sx={{ ml: 5 }}>
               <Typography variant="h5" sx={{ my: 3, color: "#1CC7C1", fontWeight: "bold" }}>
                 Appointment

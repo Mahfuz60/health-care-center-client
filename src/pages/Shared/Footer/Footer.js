@@ -15,10 +15,10 @@ const footerBgStyle = {
 
 const Footer = () => {
   return (
-    <Container style={footerBgStyle} >
+    <Container style={footerBgStyle}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={3}>
-          <Box sx={{ textAlign: "left", p: 2 }}>
+          <Box sx={{ textAlign: "center", p: 2 }}>
             <Typography variant="h5" sx={{ color: "#17CBAA", my: 3, fontWeight: "bold" }}>
               About Health <br />
               Care Center
@@ -31,7 +31,7 @@ const Footer = () => {
           </Box>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Box sx={{ textAlign: "left", p: 2 }}>
+          <Box sx={{ textAlign: "center", p: 2 }}>
             <Typography variant="h5" sx={{ color: "#17CBAA", my: 3, fontWeight: "bold" }}>
               Services
             </Typography>
@@ -59,7 +59,7 @@ const Footer = () => {
           </Box>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Box sx={{ textAlign: "left", p: 2 }}>
+          <Box sx={{ textAlign: "center", p: 2 }}>
             <Typography variant="h5" sx={{ color: "#17CBAA", my: 3, fontWeight: "bold" }}>
               Oral Health
             </Typography>
@@ -87,7 +87,7 @@ const Footer = () => {
           </Box>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Box sx={{ textAlign: "left", p: 2 }}>
+          <Box sx={{ textAlign: "center", p: 2 }}>
             <Typography variant="h5" sx={{ color: "#17CBAA", my: 3, fontWeight: "bold" }}>
               Our Address
             </Typography>
@@ -98,12 +98,10 @@ const Footer = () => {
               <Chip sx={{ backgroundColor: "white" }} icon={<TwitterIcon />} />
               <Chip sx={{ backgroundColor: "white" }} icon={<LinkedInIcon />} />
             </Typography>
-            <Typography variant="body1" sx={{ color: "gray" }}>
-              Call Now
+            <Typography variant="body1" sx={{ color: "white",textAlign: "center",backgroundColor:"black" }}>
+              Call Now:+2025550295
             </Typography>
-            <Typography variant="body1" sx={{ backgroundColor: "#17CBAA", color: "white", width: "150px" }}>
-              +2025550295
-            </Typography>
+            
           </Box>
         </Grid>
       </Grid>

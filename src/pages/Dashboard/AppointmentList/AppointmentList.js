@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from "@mui/material";
+import { Button, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import useAuth from "../../../hooks/UseAuth";
 import Table from "@mui/material/Table";
@@ -9,22 +9,29 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
 const AppointmentList = ({ date }) => {
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const [appointments, setAppointments] = useState([]);
+
+  const [visited, setVisited] = useState(true);
+  const handleAction = () => {
+    setVisited(false);
+  };
 
   useEffect(() => {
     const url = `http://localhost:5000/appointments?email=${user.email}&date=${date}`;
-    fetch(url)
+    fetch(url, {
+      headers: { authorization: `Bearer ${token}` },
+    })
       .then((res) => res.json())
       .then((data) => setAppointments(data));
   }, [date]);
   return (
     <Container>
       <Grid container spacing={2}>
-        <Typography variant="h5" sx={{ backgroundColor: "#11D0DA", width: "100%", textAlign: "left" }}>
-          Appointment:{appointments.length}
-        </Typography>
         <TableContainer>
+          <Typography variant="h5" sx={{ backgroundColor: "#11D0DA", width: "100%", textAlign: "center", fontWeight: "bold" }}>
+            Appointment:{appointments.length}
+          </Typography>
           <Table aria-label="Appointments table">
             <TableHead>
               <TableRow>
@@ -44,6 +51,19 @@ const AppointmentList = ({ date }) => {
                   <TableCell align="center">{row.serviceName}</TableCell>
                   <TableCell align="center">{row.phone}</TableCell>
                   <TableCell align="center">{row.time}</TableCell>
+
+                  {/* Action show */}
+                  <TableCell align="center">
+                    {visited ? (
+                      <Button onClick={handleAction} variant="contained" sx={{ color: "white" }}>
+                        Not visited
+                      </Button>
+                    ) : (
+                      <Button variant="contained" sx={{ color: "white" }}>
+                        visited
+                      </Button>
+                    )}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

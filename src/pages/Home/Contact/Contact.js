@@ -12,7 +12,7 @@ const Contact = () => {
   };
   return (
     <Container sx={{ py: 8 }}>
-      <Grid container spacing={2} xs={12} md={12}>
+      <Grid item container spacing={2} xs={12} md={12}>
         <Box sx={{ backgroundColor: "#3A4154", textAlign: "center", width: "200%" }}>
           <Typography variant="h5" sx={{ color: "#1CC7C1", p: 2, fontWeight: "bold" }}>
             Contact Us
