@@ -6,7 +6,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import NavBar from "../NavBar/NavBar";
+
 
 const footerBgStyle = {
   background: `url(${footerBg})`,
@@ -17,7 +17,7 @@ const footerBgStyle = {
 const Footer = () => {
   return (
     <>
-      <NavBar></NavBar>
+     
       <Container id="about" style={footerBgStyle}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={3}>

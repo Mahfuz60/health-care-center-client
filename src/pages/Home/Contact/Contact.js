@@ -2,8 +2,7 @@ import { Button, Container, Grid, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
-import Footer from "../../Shared/Footer/Footer";
-import NavBar from "../../Shared/NavBar/NavBar";
+
 
 const Contact = () => {
   const [value, setValue] = useState(null);
@@ -14,7 +13,7 @@ const Contact = () => {
   };
   return (
     <>
-    <NavBar></NavBar>
+   
       <Container id="contactUs" sx={{ py: 8 }}>
         <Grid item container spacing={2} xs={12} md={12}>
           <Box sx={{ backgroundColor: "#3A4154", textAlign: "center", width: "200%" }}>
@@ -36,7 +35,7 @@ const Contact = () => {
         </Grid>
       </Container>
 
-      <Footer></Footer>
+     
     </>
   );
 };
