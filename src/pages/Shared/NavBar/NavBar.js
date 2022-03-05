@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/UseAuth";
 import "./NavBar.css";
+import { HashLink } from "react-router-hash-link";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
@@ -45,11 +46,15 @@ const NavBar = () => {
                   </Link>{" "}
                 </li>
                 <li className="nav-item">
-                  <Button style={{ color: "white" }}>About</Button>
+                 <Link to="/footer#about" as={HashLink}>
+                 <Button style={{ color: "white" }}>About</Button>
+                 
+                 </Link>
                 </li>
                 <li className="nav-item">
-                  {" "}
-                  <Button style={{ color: "white" }}>Contact Us</Button>
+                  <Link as={HashLink} to="/contact#ContactUs">
+                    <Button style={{ color: "white" }}>Contact Us</Button>
+                  </Link>
                 </li>
                 <li className="nav-item">
                   {" "}

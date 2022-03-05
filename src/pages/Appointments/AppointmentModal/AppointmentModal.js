@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
@@ -47,7 +47,7 @@ const AppointmentModal = ({ openModal, handleCloseModal, appointment, date, setA
     };
 
     //send to data server
-    fetch("http://localhost:5000/appointments", {
+    fetch("https://secure-reaches-30439.herokuapp.com/appointments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(appointment),
